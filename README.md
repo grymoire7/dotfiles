@@ -7,4 +7,8 @@ To install:
 ```
 gem install homesick
 homesick clone grymoire7/dotfiles
+cd ~/.homesick/repos/dotiles/
+git submodule init
+git submodule update
+cd
 ```
