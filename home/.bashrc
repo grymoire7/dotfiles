@@ -132,7 +132,7 @@ pathmunge () {
 }
 
 # put personal bin directory at end of path
-if [ -d "~/bin" ]; then
+if [ -d "$HOME/bin" ]; then
     pathmunge ~/bin after
 fi
 
