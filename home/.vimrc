@@ -24,6 +24,21 @@ endif
 " Colorscheme
 colorscheme koehler
 
+
+"====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
+
+"====[ Make the 81st column stand out ]====================
+
+" OR ELSE just the 81st column of wide lines...
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
+"====[ Use ;; instead of <Esc>.  It's easier to type. ]======
+imap ;; <Esc>
+
+
 " Section: Options {{{1
 " ---------------------
 
@@ -209,6 +224,10 @@ map <Leader>re :e <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>rt :tabnew <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>rv :vsp <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>rs :sp <C-R>=expand("%:p:h") . "/" <CR>
+
+"=====[ Swap : and ; to make colon commands easier to type ]======
+nnoremap  ;  :
+nnoremap  :  ;
 
 " }}}1
 "
