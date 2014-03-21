@@ -104,6 +104,9 @@ alias l='ls -CF'
 alias h=history
 alias a=alias
 alias genv='env | grep'
+alias t2='tree -L 2'
+alias t3='tree -L 3'
+alias t4='tree -L 4'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
