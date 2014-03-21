@@ -26,7 +26,8 @@ colorscheme koehler
 
 
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+"exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+exec "set listchars=trail:\uB7,nbsp:~"
 set list
 
 "====[ Make the 81st column stand out ]====================
@@ -36,7 +37,7 @@ highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
 "====[ Use ;; instead of <Esc>.  It's easier to type. ]======
-imap ;; <Esc>
+imap jk <Esc>
 
 
 " Section: Options {{{1
@@ -227,7 +228,7 @@ map <Leader>rs :sp <C-R>=expand("%:p:h") . "/" <CR>
 
 "=====[ Swap : and ; to make colon commands easier to type ]======
 nnoremap  ;  :
-nnoremap  :  ;
+" nnoremap  :  ;
 
 " }}}1
 "
