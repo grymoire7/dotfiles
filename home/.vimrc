@@ -24,6 +24,7 @@ endif
 " Colorscheme
 colorscheme koehler
 
+set tags=./tags;
 
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
 "exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
@@ -33,8 +34,8 @@ set list
 "====[ Make the 81st column stand out ]====================
 
 " OR ELSE just the 81st column of wide lines...
-highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%81v', 100)
+" highlight ColorColumn ctermbg=magenta
+" call matchadd('ColorColumn', '\%81v', 100)
 
 "====[ Use ;; instead of <Esc>.  It's easier to type. ]======
 imap jk <Esc>
@@ -86,9 +87,9 @@ set undodir=/tmp,/var/tmp,~/tmp     " directory for undo tree files
 set undofile
 set wildignore+=*.pyc
 
-if has("mouse")
-    set mouse=a
-endif
+"if has("mouse")
+"    set mouse=a
+"endif
 
 " Tabs
 set expandtab       " expand tabs into spaces
