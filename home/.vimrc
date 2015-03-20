@@ -9,8 +9,10 @@ set bg=dark
 
 " vundle stuff goes in its own file
 " See the vundle FAQ for explanation of why
-if filereadable(expand("~/.vim/bundles.vim"))
-    source ~/.vim/bundles.vim
+if version >= 703
+    if filereadable(expand("~/.vim/bundles.vim"))
+        source ~/.vim/bundles.vim
+    endif
 endif
 
 if has("autocmd")
@@ -83,8 +85,10 @@ set smartcase       " smart case insensitive search
 set smarttab
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%{SL('CapsLockStatusline')}%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P
 set textwidth=79    " anything bigger than this is annoying - see also: pep8
-set undodir=/tmp,/var/tmp,~/tmp     " directory for undo tree files
-set undofile
+if version >= 703
+    set undodir=/tmp,/var/tmp,~/tmp     " directory for undo tree files
+    set undofile
+endif
 set wildignore+=*.pyc
 
 "if has("mouse")
@@ -167,7 +171,9 @@ if has("autocmd") && !exists("autocmds_loaded")
     "autocmd FileType svn-base set ft=svnbase
 
     " only use relative numebering in the current buffer
+if version >= 703
     autocmd BufEnter * setlocal relativenumber number
+endif
     autocmd BufLeave * setlocal number
     " absolute numbers in insert mode
     "au InsertEnter * set number
