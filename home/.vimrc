@@ -29,8 +29,9 @@ colorscheme koehler
 set tags=./tags;
 
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
-"exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-exec "set listchars=trail:\uB7,nbsp:~"
+"==== exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+"==== exec "set listchars=trail:\uB7,nbsp:~"
+exec "set listchars=tab:>-,trail:\uB7,nbsp:~"
 set list
 
 "====[ Make the 81st column stand out ]====================
@@ -156,6 +157,7 @@ if has("autocmd") && !exists("autocmds_loaded")
     let autocmds_loaded = 1
 
     " assume c/c++ always uses doxygen
+    autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
     autocmd FileType c let b:comment = '\/\/'
     autocmd FileType c set ft=c.doxygen
     autocmd FileType cpp set ft=cpp.doxygen
