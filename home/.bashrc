@@ -183,3 +183,9 @@ if [ -f ~/.bashrc.local ]; then
     . ~/.bashrc.local
 fi
 
+if [ -f ~/.homesick/repos/homeshick/homeshick.sh ]; then
+    . $HOME/.homesick/repos/homeshick/homeshick.sh
+fi
+
+
+
