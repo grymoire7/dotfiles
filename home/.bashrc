@@ -70,21 +70,24 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
+    PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] \w\[\033[0;33m\] $(git branch 2>/dev/null | grep "^*" | colrm 1 2)\[\033[0m\n\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
+    PS1='\u \w $(git branch 2>/dev/null | grep "^*" | colrm 1 2)\n\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# case "$TERM" in
+# xterm*|rxvt*)
+#     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#     ;;
+# *)
+#     ;;
+# esac
 
+# Aliases involving color support and filesystem listings are included here.
+# All other aliases should be in ~/.bash_aliases
+#
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -93,24 +96,20 @@ if [ -x /usr/bin/dircolors ]; then
     #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    alias fgrep='grep -F --color=auto'
+    alias egrep='grep -E --color=auto'
 fi
 
-# some more ls aliases
+# other filesystem listing aliases
 alias ll='ls -lF'
 alias la='ls -A'
 alias l='ls -CF'
 alias h=history
 alias a=alias
-alias genv='env | grep'
-alias t2='tree -L 2'
-alias t3='tree -L 3'
-alias t4='tree -L 4'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -123,9 +122,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# PATH munging
+# PATH munging -- very handy for what follows
 pathmunge () {
-    if ! echo $PATH | /bin/egrep -q "(^|:)$1($|:)" ; then
+    if ! echo $PATH | egrep -q "(^|:)$1($|:)" ; then
         if [ "$2" = "after" ] ; then
             PATH=$PATH:$1
         else
@@ -139,7 +138,7 @@ if [ -d "$HOME/bin" ]; then
     pathmunge ~/bin after
 fi
 
-#### At the end here we source certain external setup scripts
+#### Here near the end we source certain external setup scripts
 #### if present.
 ####
 
@@ -159,6 +158,14 @@ fi
 if [ -d "/usr/local/heroku" ]; then
     pathmunge /usr/local/heroku/bin before
 fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# export PATH="$PATH:$HOME/.rvm/bin"
+# if we have rvm then enable it
+if [ -d "$HOME/.rvm" ]; then
+    pathmunge $HOME/.rvm/bin before
+fi
+
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

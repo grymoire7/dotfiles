@@ -1,19 +1,54 @@
 " .vimrc
-" Original Author: Peter Rowlands <peter@pmrowla.com>
-" Hacked by: Tracy Atteberry <tracy@magicbydesign.com>
+" Author: Tracy Atteberry <tracy@magicbydesign.com>
 
-set nocompatible    " be iMproved
+" Specify plugins here using [vim-plug](https://github.com/junegunn/vim-plug).
+" After changes use :PlugInstall to install.
+"
+"        Note that:  Plug 'benmills/vimux.git'
+" is shorthand for: Plug 'https://github.com/benmills/vimux.git'
+call plug#begin('~/.vim/plugged')
+Plug 'benmills/vimux'
+Plug 'pgr0ss/vimux-ruby-test'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-syntastic/syntastic'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mileszs/ack.vim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-endwise'
+Plug 'thoughtbot/vim-rspec'
+call plug#end()
 
-" set this before loading bundles so solarized works properly
+" The % key will switch between opening and closing brackets. By sourcing
+" matchit.vim — a standard file in Vim installations for years — the key can also
+" switch among e.g. if/elsif/else/end, between opening and closing XML tags, and
+" more.
+runtime! macros/matchit.vim
+
+" status line config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" syntastic config
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+set nocompatible          " be iMproved
+" set clipboard=unnamedplus " interact nicely with system clipboard (*)
+
+" turn off search highlights by just hitting return in command mode
+nnoremap <CR> :noh<CR><CR>
+
+" needed before loading bundles so solarized works properly
+" (not required with current settings)
 set bg=dark
-
-" vundle stuff goes in its own file
-" See the vundle FAQ for explanation of why
-if version >= 703
-    if filereadable(expand("~/.vim/bundles.vim"))
-        source ~/.vim/bundles.vim
-    endif
-endif
 
 if has("autocmd")
     filetype plugin indent on   " required!
@@ -27,6 +62,18 @@ endif
 colorscheme koehler
 
 set tags=./tags;
+
+let mapleader = ","
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+" map ,e and ,v to open files in the same directory as the current file
+cnoremap %% <C-R>=exapnd('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
 
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
 "==== exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
@@ -98,9 +145,9 @@ set wildignore+=*.pyc
 
 " Tabs
 set expandtab       " expand tabs into spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 " Plugin Settings {{{2
 
@@ -173,9 +220,9 @@ if has("autocmd") && !exists("autocmds_loaded")
     "autocmd FileType svn-base set ft=svnbase
 
     " only use relative numebering in the current buffer
-if version >= 703
-    autocmd BufEnter * setlocal relativenumber number
-endif
+" if version >= 703
+"     autocmd BufEnter * setlocal relativenumber number
+" endif
     autocmd BufLeave * setlocal number
     " absolute numbers in insert mode
     "au InsertEnter * set number
