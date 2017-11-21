@@ -164,6 +164,7 @@ fi
 # if we have rvm then enable it
 if [ -d "$HOME/.rvm" ]; then
     pathmunge $HOME/.rvm/bin before
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 fi
 
 
@@ -186,6 +187,5 @@ fi
 if [ -f ~/.homesick/repos/homeshick/homeshick.sh ]; then
     . $HOME/.homesick/repos/homeshick/homeshick.sh
 fi
-
 
 
