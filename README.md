@@ -39,6 +39,10 @@ Then in vim `:PlugInstall`.
 A recurring theme in these dotfiles is the inclusion of a `.local` version of
 the config file, if present, at the end of the config file here.  This is to
 accomodate those configuration details that may be different on your different
-machines.  Files that adhere to this philosophy inlude `.bashrc`, `.gitconfig`
-and `.vimrc`.
+machines.  Files that adhere to this philosophy inlude `.bashrc`, `.gitconfig`,
+`.tmux.conf` and `.vimrc`.
+
+## TODO
+* Add an install script for setting up on a fresh machine
+
 
