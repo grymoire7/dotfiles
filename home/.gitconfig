@@ -1,0 +1,42 @@
+[user]
+    name = Tracy Atteberry
+    email = tracy@magicbydesign.com
+[core]
+    editor = vi
+[color]
+    ui = true
+[color "status"]
+    added = green
+    changed = red
+    untracked = cyan
+[alias]
+    lg = !"git lg1"
+    lg1 = !"git lg1-specific --all"
+    lg2 = !"git lg2-specific --all"
+    lg3 = !"git lg3-specific --all"
+
+    lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+    lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+    lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+
+    dog = log --all --decorate --oneline --graph
+    lg4 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+    l = !git log --color --oneline | head -10
+    a = add
+    aa = add --all
+    d = diff
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    dc = diff --cached
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+    rb = rebase
+    lo = !crf 'why are you using this feature?'
+    ri = "!f() { git rebase -i --autosquash HEAD~$1; }; f"`
+[push]
+    default = simple
+[include]
+    path = .gitconfig.local
