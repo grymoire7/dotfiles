@@ -28,6 +28,10 @@ anything you may need for later, rm the unlinked files and relink.
 Finally, clone any local castle (for .bashrc.local, etc.) and link again.
 
 ## Configure vim
+Due to potential differences in vim configuration via `.vimrc.local` files, I
+do not track the `.vim` directory here.  This make necessary additional, but
+brief, steps to setup vim plugins.
+
 Install [vim-plug](https://github.com/junegunn/vim-plug):
 
 ```bash
@@ -37,12 +41,12 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 Then in vim `:PlugInstall`.
 
-## Local configuration
+## Local configuration note
 A recurring theme in these dotfiles is the inclusion of a `.local` version of
 the config file, if present, at the end of the config file here.  This is to
 accomodate those configuration details that may be different on your different
 machines.  Files that adhere to this philosophy inlude `.bashrc`, `.gitconfig`,
-`.tmux.conf` and `.vimrc`.  For me, these `.local` files are sometimes tracked
+`.tmux.conf` and `.vimrc`.  For me, these `.local` files are often tracked
 in another repo, for example a corporate repo at work or just a local git repo
 at home.
 

@@ -1,6 +1,5 @@
 [user]
     name = Tracy Atteberry
-    email = tracy@magicbydesign.com
 [core]
     editor = vi
 [color]
@@ -25,18 +24,29 @@
     a = add
     aa = add --all
     d = diff
+    di = diff
+    dc = diff --cached
     co = checkout
     ci = commit
     st = status
     br = branch
-    dc = diff --cached
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
     type = cat-file -t
     dump = cat-file -p
     rb = rebase
     lo = !crf 'why are you using this feature?'
     ri = "!f() { git rebase -i --autosquash HEAD~$1; }; f"`
+
+    # From Gary Bernhardt
+    pullff = pull --ff-only
+    pom = push origin master
+
 [push]
+    # simple is the default starting with Git 2.0
+    # it pushes only the current working branch and only if it also has the
+    # same name on the remote
     default = simple
+
 [include]
     path = .gitconfig.local
+
