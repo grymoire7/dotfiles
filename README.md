@@ -1,29 +1,31 @@
 grymoire7's dotfiles
 ====================
 
-I'm currently using homeshick to manage my dotfiles and symlinks.  I switched
-from [homesick](https://github.com/technicalpickles/homesick) for fewer
-dependencies (bash).
+I'm currently using [homeshick](https://github.com/andsens/homeshick) to manage
+my dotfiles and symlinks.  I switched from
+[homesick](https://github.com/technicalpickles/homesick) for fewer
+dependencies (ie. just bash).
 
-## Install homeshick
-To install [homeshick](https://github.com/andsens/homeshick):
-
-```bash
-git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
-```
-
-The line below should already be added to the .bashrc in this repo, but just in case:
+## Setting up homeshick with this repo
+See the [homeshick](https://github.com/andsens/homeshick) docs for more details.
+In particular, I skip the step of adding a line to source homeschick.sh to my .bashrc
+file since I've already done that.
 
 ```bash
-# from sh and its derivates (bash, dash, ksh, zsh etc.)
-printf '\nsource "$HOME/.homesick/repos/homeshick/homeshick.sh"' >> $HOME/.bashrc
-# csh and derivatives (i.e. tcsh)
-printf '\nalias homeshick source "$HOME/.homesick/repos/homeshick/bin/homeshick.csh"\n' >> $HOME/.cshrc
-# fish shell
-echo \n'source "$HOME/.homesick/repos/homeshick/homeshick.fish"' >> "$HOME/.config/fish/config.fish"
+# Grab homeshick
+git clone git@github.com:andsens/homeshick.git $HOME/.homesick/repos/homeshick
+# Source it into the current shell
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+# grab this repo of dotfiles
+homeshick clone grymoire7/dotfiles
+# Setup the links, starting with this
+homeshick -s link
 ```
 
-Finally, link everything up with `homeshick -s link`.  See `homeshick --help` for more options.
+Now diff the files in the repo with any remaining unlinked dotfiles and finish, save
+anything you may need for later, rm the unlinked files and relink.
+
+Finally, clone any local castle (for .bashrc.local, etc.) and link again.
 
 ## Configure vim
 Install [vim-plug](https://github.com/junegunn/vim-plug):
@@ -40,9 +42,9 @@ A recurring theme in these dotfiles is the inclusion of a `.local` version of
 the config file, if present, at the end of the config file here.  This is to
 accomodate those configuration details that may be different on your different
 machines.  Files that adhere to this philosophy inlude `.bashrc`, `.gitconfig`,
-`.tmux.conf` and `.vimrc`.
+`.tmux.conf` and `.vimrc`.  For me, these `.local` files are sometimes tracked
+in another repo, for example a corporate repo at work or just a local git repo
+at home.
 
-## TODO
-* Add an install script for setting up on a fresh machine
 
 
