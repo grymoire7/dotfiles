@@ -1,0 +1,138 @@
+#!/usr/bin/env bash
+# These lines are like an unofficial strict mode.
+# See https://dev.to/thiht/shell-scripts-matter for details.
+set -euo pipefail
+IFS=$'\n\t'
+
+#/ Usage:
+#/     vsp [options] source_file
+#/
+#/ Description:
+#/     Run vim with vertical splits for input file and _spec files.
+#/
+#/ Options:
+#/   --help                    : Display this help message
+#/   -o|--horiz                : Do horizonal split
+#/   -a|--all                  : Open all spec files found
+#/   -l|--list                 : just list matched spec files
+#/   -f|--fake                 : just echo the vim command line
+#/
+#/ Examples:
+#/     vsp --help       # see this help
+#/     vsp hello.rb     # vim -O hello.rb spec/hello_spec.rb
+#/     vsp -o hello.rb  # vim -o hello.rb spec/hello_spec.rb
+#/     vsp -f hello.rb  # echo vim -O hello.rb spec/hello_spec.rb
+#/     vsp -a hello.rb  # see option help above
+
+# Print all lines starting with '#/' as usage when --help is seen as an
+# argument.
+usage() { grep '^#/' "$0" | cut -c4- ; exit 0 ; }
+expr "$*" : ".*--help" > /dev/null && usage
+
+# A quick collection of logging functions
+# On a unix box you might want to write log files to /tmp instead.
+# Add time/date etc. to taste.
+readonly LOG_FILE="/tmp/$(basename "$0").log"   # readonly is like const
+info()    { echo "[INFO]    $@" | tee -a "$LOG_FILE" >&2 ; }
+warning() { echo "[WARNING] $@" | tee -a "$LOG_FILE" >&2 ; }
+error()   { echo "[ERROR]   $@" | tee -a "$LOG_FILE" >&2 ; }
+fatal()   { echo "[FATAL]   $@" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
+
+# globals -- try to keep these to a minimum
+VIM_OPTS='-O'                      # vim options
+SPLIT_ALL=false                    # boolean, split on all found spec files
+FAKE_IT=false                      # boolean, just pretend to do it
+LIST_SPECS=false                   # boolean, list specs and exit
+
+# Prefer functional programming.
+main() {
+
+    local infile=
+    [ -f "$LOG_FILE" ] && rm $LOG_FILE 2> /dev/null
+
+    # -------------------------------------------------------------------------
+    # Here is one way to handle command line arguments. You may want to try
+    # getopts for more complicated options handling. (Google it.)
+    #
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -o|--horiz)            # split horizontally
+                VIM_OPTS="-o"
+                ;;
+            -a|--all)              # split on all found spec files
+                SPLIT_ALL=true
+                ;;
+            -f|--fake)             # just pretend to do it
+                FAKE_IT=true
+                ;;
+            -l|--list)             # just list matched specs
+                LIST_SPECS=true
+                ;;
+            *)
+                infile=$1          # input source file
+                ;;
+        esac
+        shift                      # shift to next argument
+    done
+    # -------------------------------------------------------------------------
+
+    if [ ! -f "$infile" ]; then
+      echo 'ERROR: Source file parameter required!'
+      usage
+      return
+    fi
+
+    vimsplit $infile
+}
+
+############################################################
+# Call vim with spec file(s) and split options
+# Globals:
+#     LIST_SPECS, SPLIT_ALL, VIM_OPTS, FAKE_IT
+# Arguments:
+#     $1 - input source file
+# Returns:
+#     None
+############################################################
+vimsplit() {
+    # provide defaults for arguments per strict mode
+    local infile=${1:-"tmp.rb"}
+
+    filename=$(basename "$infile")
+    base="${filename%.*}"
+    ext="${filename##*.}"
+    find_results=($(find . -name "${base}_spec.${ext}"))
+
+    if [ "$LIST_SPECS" = true ]; then
+      printf '%s\n' "${find_results[@]}"
+      return
+    fi
+
+    spec=( "${find_results[@]:-}" )
+
+    if [ "$SPLIT_ALL" = false ]; then
+      spec=( "${spec[0]}" )
+    fi
+
+    echo vim ${VIM_OPTS} ${infile} ${spec[@]}
+    if [ "$FAKE_IT" = false ]; then
+      vim ${VIM_OPTS} ${infile} ${spec[@]}
+    fi
+}
+
+# This method is run before the script exits. Like 'finally' for your script.
+cleanup() {
+    # Remove temporary files
+    # Restart services
+    # ...
+    # info "Cleaning up..."
+    echo
+}
+
+# This conditional executes main only if script is called directly,
+# not if it's sourced from another script.
+if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
+    trap cleanup EXIT     # trap exit and call cleanup()
+    main $*               # do the main thing
+fi
+
