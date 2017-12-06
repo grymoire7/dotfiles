@@ -27,20 +27,6 @@ anything you may need for later, rm the unlinked files and relink.
 
 Finally, clone any local castle (for .bashrc.local, etc.) and link again.
 
-## Configure vim
-Due to potential differences in vim configuration via `.vimrc.local` files, I
-do not track the `.vim` directory here.  This make necessary additional, but
-brief, steps to setup vim plugins.
-
-Install [vim-plug](https://github.com/junegunn/vim-plug):
-
-```bash
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
-Then in vim `:PlugInstall`.
-
 ## Local configuration note
 A recurring theme in these dotfiles is the inclusion of a `.local` version of
 the config file, if present, at the end of the config file here.  This is to
@@ -50,5 +36,16 @@ machines.  Files that adhere to this philosophy inlude `.bashrc`, `.gitconfig`,
 in another repo, for example a corporate repo at work or just a local git repo
 at home.
 
+## Configure vim
+Due to potential differences in vim configuration via `.vimrc.local` files, I
+do not track the `.vim` directory here.  This makes two quick additional steps
+necessary to setup vim plugins.
 
+Install [vim-plug](https://github.com/junegunn/vim-plug):
 
+```bash
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+Then in vim `:PlugInstall`.
