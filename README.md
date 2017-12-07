@@ -4,7 +4,7 @@ grymoire7's dotfiles
 I'm currently using [homeshick](https://github.com/andsens/homeshick) to manage
 my dotfiles and symlinks.  I switched from
 [homesick](https://github.com/technicalpickles/homesick) for fewer
-dependencies (ie. just bash).
+dependencies (ie. just bash and git).
 
 ## Setting up homeshick with this repo
 See the [homeshick](https://github.com/andsens/homeshick) docs for more details.
