@@ -40,6 +40,7 @@
     # From Gary Bernhardt
     pullff = pull --ff-only
     pom = push origin master
+    poh = push origin HEAD
 
 [push]
     # simple is the default starting with Git 2.0
