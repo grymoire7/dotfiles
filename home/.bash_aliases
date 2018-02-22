@@ -12,6 +12,11 @@ alias finchsay='cowsay -f finch' # requires finch.cow file
 alias gco="git checkout"
 alias gbr="git branch"
 alias gst="git status"
+alias gpoh="git push origin head"
+alias gpom="git push origin master"
+alias gcom="git commit -m"
+alias gcm="git commit -m"
+alias r=rails
 
 # FYI, cdpath might be a better choice for this:
 # alias dw="cd ~/projects/deal_wizard"
