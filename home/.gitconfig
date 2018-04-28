@@ -36,6 +36,7 @@
     rb = rebase
     lo = !crf 'why are you using this feature?'
     ri = "!f() { git rebase -i --autosquash HEAD~$1; }; f"`
+    ctags = !.git/hooks/ctags
 
     # From Gary Bernhardt
     pullff = pull --ff-only
@@ -57,3 +58,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[init]
+	templatedir = ~/.git_template

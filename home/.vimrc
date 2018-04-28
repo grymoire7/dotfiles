@@ -34,6 +34,13 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" tabs
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#show_splits = 0
+set wildmenu
+nnoremap gb :ls<CR>:b<Space>
+
 " syntastic config
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -61,10 +68,11 @@ endif
 " Colorscheme
 colorscheme koehler
 
-set tags=./tags;
+" set tags=./tags;
 
 let mapleader = ","
 " RSpec.vim mappings
+let g:rspec_command = "!".system("git rev-parse --show-toplevel | tr -d '\\n'")."/bin/rspec {spec}"
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
