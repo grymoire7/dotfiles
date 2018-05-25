@@ -1,13 +1,17 @@
 # ~/.bash_aliases: executed by .bashrc for non-login shells.
 
 alias genv='env | grep'
+alias gh='history | grep'
+alias ghist='history | grep'
 alias t2='tree -L 2'
 alias t3='tree -L 3'
 alias t4='tree -L 4'
 
 alias be="bundle exec"
 alias bek="bundle exec rake"
-alias finchsay='cowsay -f finch' # requires finch.cow file
+alias ber='bundle exec rspec'
+alias r=rails
+alias sr='./bin/rspec'
 
 alias gco="git checkout"
 alias gbr="git branch"
@@ -16,40 +20,22 @@ alias gpoh="git push origin head"
 alias gpom="git push origin master"
 alias gcom="git commit -m"
 alias gcm="git commit -m"
-alias r=rails
 
-# FYI, cdpath might be a better choice for this:
-# alias dw="cd ~/projects/deal_wizard"
-# alias fw="cd ~/projects/firewalker"
-# alias dgs="cd ~/projects/deal-guide"
-# alias djs="cd ~/projects/deal-guide-strucjures"
-# alias aa="cd ~/projects/auto_approval"
+alias finchsay='cowsay -f finch' # requires finch.cow file
 
-# alias crf='cowsay -f cruftosaurus'
-# alias shp='cowsay -f shiposaurus'
-# alias sb="source ~/.bashrc"
+# FYI, cdpath might be a better choice for cd aliases
 # alias bc="cd ~/projects/birdcage"
-# alias gst="git status"
 # alias gprom="git pull --rebase origin master"
-
-# alias who="echo 'Jim Challenger Esq'"
-# alias gpoh="git push origin head"
-# alias goph="git push origin head"
-# alias gpoph="git push origin head"
-# alias gpohf="cowsay -f dragon-and-cow 'FORCE PUSHING, JIM!!' && git push origin head -f"
 # alias gcan="git commit --amend --no-edit"
-# alias gmacs="open -a Emacs"
-# alias sl='cowsay -f cruftosaurus Oh no Jim'
-# alias 'dbtunnel'='ssh b.snc1 -fNL 13306:dealguide-terminator-db1.snc1:3306'
-# alias '+1'="echo 'Aw yeah!!!'"
 # alias grc="git rebase --continue"
 # alias grqa="git fetch && git reset --hard origin/qa"
-# alias such='git'
-# alias very='git'
 # alias wow='git status'
-# alias killNodeRunTests='killall node && make test-integration'
 # alias g='git'
 # alias gs='git status'
+# alias gmacs="open -a Emacs"
+# alias 'dbtunnel'='ssh b.snc1 -fNL 13306:dealguide-terminator-db1.snc1:3306'
+# alias '+1'="echo 'Aw yeah!!!'"
+# alias killNodeRunTests='killall node && make test-integration'
 # alias r='bundle exec rspec'
 # alias dc='docker-compose -f docker-compose.development.yml'
 # alias dm='docker-machine'
@@ -68,7 +54,6 @@ alias r=rails
 # alias 'fails'='kill -9 `ps aux | grep rails | tail -n 1 | awk "{print $2}"`'
 # alias 'dgtunnel'='ssh b.snc1 -fNL 13342:dealguide-algorithm-dev.snc1:8080'
 # alias cuke='bundle exec cucumber -r features/'
-# alias haha="cowsay -f cruftosaurus haha | sed 's/CRUFT/HAHA!/g'"
 # alias test-integration="mocha --launch=false --app.port=3070 test/integration/"
 
 
