@@ -8,7 +8,6 @@
 " is shorthand for: Plug 'https://github.com/benmills/vimux.git'
 call plug#begin('~/.vim/plugged')
 Plug 'benmills/vimux'
-Plug 'pgr0ss/vimux-ruby-test'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
@@ -46,6 +45,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+" let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+silent! nmap <F6> :SyntasticToggleMode<CR>
 
 set nocompatible          " be iMproved
 " set clipboard=unnamedplus " interact nicely with system clipboard (*)

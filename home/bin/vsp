@@ -13,6 +13,7 @@ IFS=$'\n\t'
 #/ Options:
 #/   --help                    : Display this help message
 #/   -o|--horiz                : Do horizonal split
+#/   -p|--ptabs                : Open in tabs
 #/   -a|--all                  : Open all spec files found
 #/   -l|--list                 : just list matched spec files
 #/   -f|--fake                 : just echo the vim command line
@@ -58,6 +59,9 @@ main() {
         case "$1" in
             -o|--horiz)            # split horizontally
                 VIM_OPTS="-o"
+                ;;
+            -p|--ptabs)            # split in tabs
+                VIM_OPTS="-p"
                 ;;
             -a|--all)              # split on all found spec files
                 SPLIT_ALL=true
