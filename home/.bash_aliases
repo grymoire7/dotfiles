@@ -23,6 +23,9 @@ alias gcm="git commit -m"
 
 alias finchsay='cowsay -f finch' # requires finch.cow file
 
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
+
 # FYI, cdpath might be a better choice for cd aliases
 # alias bc="cd ~/projects/birdcage"
 # alias gprom="git pull --rebase origin master"
