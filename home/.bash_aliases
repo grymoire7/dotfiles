@@ -13,17 +13,14 @@ alias ber='bundle exec rspec'
 alias r=rails
 alias sr='./bin/rspec'
 
-alias gco="git checkout"
-alias gbr="git branch"
 alias gst="git status"
-alias gpoh="git push origin head"
-alias gpom="git push origin master"
-alias gcom="git commit -m"
-alias gcm="git commit -m"
+alias e="emacs -nw"
 
 alias finchsay='cowsay -f finch' # requires finch.cow file
 
 alias awe='aws-okta exec optimize/sandbox-dev --'
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
 
 # FYI, cdpath might be a better choice for cd aliases
 # alias bc="cd ~/projects/birdcage"
