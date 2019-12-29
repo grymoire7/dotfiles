@@ -138,6 +138,11 @@ if [ -d "$HOME/bin" ]; then
     pathmunge ~/bin after
 fi
 
+# put anaconda bin directory at end of path
+if [ -d "/anaconda3/bin" ]; then
+    pathmunge /anaconda3/bin before
+fi
+
 #### Here near the end we source certain external setup scripts
 #### if present.
 ####
@@ -189,3 +194,9 @@ if [ -f ~/.homesick/repos/homeshick/homeshick.sh ]; then
 fi
 
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

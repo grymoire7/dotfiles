@@ -43,6 +43,8 @@
     pom = push origin master
     poh = push origin HEAD
 
+    pushup = "!git push --set-upstream origin $(git symbolic-ref --short HEAD)"
+
 [push]
     # simple is the default starting with Git 2.0
     # it pushes only the current working branch and only if it also has the
@@ -60,3 +62,5 @@
 	trustExitCode = true
 [init]
 	templatedir = ~/.git_template
+[diff "jupyternotebook"]
+	command = git-nbdiffdriver diff

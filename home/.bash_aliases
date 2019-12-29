@@ -23,6 +23,8 @@ alias gcm="git commit -m"
 
 alias finchsay='cowsay -f finch' # requires finch.cow file
 
+alias awe='aws-okta exec optimize/sandbox-dev --'
+
 # FYI, cdpath might be a better choice for cd aliases
 # alias bc="cd ~/projects/birdcage"
 # alias gprom="git pull --rebase origin master"

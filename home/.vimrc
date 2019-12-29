@@ -20,6 +20,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
 Plug 'thoughtbot/vim-rspec'
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " The % key will switch between opening and closing brackets. By sourcing
@@ -45,7 +46,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-" let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 silent! nmap <F6> :SyntasticToggleMode<CR>
 
 set nocompatible          " be iMproved
@@ -173,11 +174,13 @@ let g:ctrlp_user_command = {
 let g:gist_detect_filetype = 1
 let g:gist_show_privates = 1
 
+" let g:terraform_fold_sections=1
+
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_mode_map = { 'mode': 'active',
     \ 'active_filetypes': [],
-    \ 'passive_filetypes': ['cpp']
+    \ 'passive_filetypes': ['cpp', 'python']
 \}
 
 let g:indent_guides_enable_on_vim_startup = 1
