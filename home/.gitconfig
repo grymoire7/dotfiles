@@ -1,6 +1,6 @@
 [user]
     name = Tracy Atteberry
-	email = tracy@magicbydesign.com
+    email = tracy@magicbydesign.com
 [core]
     editor = vi
 [color]
@@ -54,10 +54,10 @@
     path = .gitconfig.local
 
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 [init]
-	templatedir = ~/.git_template
+    templatedir = ~/.git_template
