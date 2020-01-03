@@ -31,12 +31,15 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     html
      yaml
      python
      (ruby :variables
-           ruby-version-manager 'rbenv
+           ruby-version-manager 'rvm
            ruby-enable-enh-ruby-mode t
+           ruby-enable-ruby-on-rails-support t
            ruby-test-runner 'rspec)
+     ruby-on-rails
      markdown
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -56,6 +59,8 @@ values."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
+     terraform
+     themes-megapack
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -133,15 +138,14 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light
-                         soloarized-dark)
+   ;; dotspacemacs-themes '(spacemacs-dark
+   ;;                       spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 16
+                               :size 18
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -267,7 +271,15 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   ;; dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers '(:relative nil
+                               :disabled-for-modes dired-mode
+                                                   doc-view-mode
+                                                   markdown-mode
+                                                   org-mode
+                                                   pdf-view-mode
+                                                   text-mode
+                               :size-limit-kb 1000)
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'origami
@@ -299,8 +311,18 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
-   dotspacemacs-frame-title-format "%I@%S: %a"
+   ;; dotspacemacs-frame-title-format "%I@%S: %a"
+   dotspacemacs-frame-title-format "%f"
    dotspacemacs-icon-title-format nil
+   ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
+   ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
+   ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
+   ;; (default '(spacemacs :separator wave :separator-scale 1.5))
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   ;; (set-face-background 'line-number (color-darken-name (face-attribute 'default :background) 2))
    ))
 
 (defun dotspacemacs/user-init ()
@@ -313,6 +335,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq exec-path-from-shell-check-startup-files nil)
   (setq-default evil-escape-key-sequence "jk")
   (setq-default evil-escape-delay 0.2)
+  ;; (setq custom-file "~/.spacemacs.d/customize.el")
+  ;; (require 'ob-ruby)
+  ;; (org-babel-do-load-languages
+  ;;   'org-babel-load-languages
+  ;;   '((ruby . t)))
   )
 
 (defun dotspacemacs/user-config ()
@@ -322,25 +349,57 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; 'evil-normal-state 'evil-force-normal-state ?
-  ;; (evil-define-key 'normal key-translation-map (kbd ";") (kbd ":"))
   ;; (setq magit-repository-directories '("~/projects/"))
+
+  ;; This puts the full file path in the mode line.
+  ;; https://emacs.stackexchange.com/questions/36857/how-can-i-show-the-full-path-to-the-current-file-in-the-mode-line-for-spacemacs
+  ;; (spaceline-define-segment buffer-id
+  ;;   (if (buffer-file-name)
+  ;;       (abbreviate-file-name (buffer-file-name))
+  ;;     (powerline-buffer-id)))
+  ;; (add-to-list 'auto-mode-alist '("\\.hcl\\(vars\\)?\\'" . terraform-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
+ '(hl-todo-keyword-faces
+   (quote
+    (("TODO" . "#dc752f")
+     ("NEXT" . "#dc752f")
+     ("THEM" . "#2d9574")
+     ("PROG" . "#4f97d7")
+     ("OKAY" . "#4f97d7")
+     ("DONT" . "#f2241f")
+     ("FAIL" . "#f2241f")
+     ("DONE" . "#86dc2f")
+     ("NOTE" . "#b1951d")
+     ("KLUDGE" . "#b1951d")
+     ("HACK" . "#b1951d")
+     ("TEMP" . "#b1951d")
+     ("FIXME" . "#dc752f")
+     ("XXX+" . "#dc752f")
+     ("\\?\\?\\?+" . "#dc752f"))))
+ '(linum-format " %7i ")
+ '(org-agenda-files (quote ("~/Documents/notes/notes.org")))
  '(package-selected-packages
    (quote
-    (yaml-mode enh-ruby-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot smeargle orgit magit-gitflow magit-popup gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help origami yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode anaconda-mode pythonic markdown-toc rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby mmm-mode markdown-mode gh-md ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy))))
+    (yasnippet-snippets lsp-ui lsp-treemacs lsp-python-ms ivy-yasnippet fuzzy flycheck-pos-tip pos-tip dap-mode bui tree-mode company-web web-completion-data company-terraform company-statistics company-lsp lsp-mode company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete projectile-rails inflections feature-mode terraform-mode hcl-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode haml-mode emmet-mode yaml-mode enh-ruby-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot smeargle orgit magit-gitflow magit-popup gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help origami yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode anaconda-mode pythonic markdown-toc rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby mmm-mode markdown-mode gh-md ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy)))
+ '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+)
