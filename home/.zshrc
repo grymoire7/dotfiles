@@ -6,12 +6,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export EDITOR=vim
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rg.conf"
+export PROJECT_DIR="$HOME/projects"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/tracy/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -74,7 +76,7 @@ SAVEHIST=5000
 HISTSIZE=2000
 
 # share history across multiple zsh sessions
-setopt SHARE_HISTORY
+# setopt SHARE_HISTORY
 # append to history
 setopt APPEND_HISTORY
 
@@ -191,8 +193,6 @@ if [ -d "$HOME/.rvm" ]; then
     # Load RVM into a shell session *as a function*
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 fi
-
-export PROJECT_DIR="$HOME/projects"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

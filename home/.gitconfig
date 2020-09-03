@@ -3,6 +3,7 @@
     email = tracy@magicbydesign.com
 [core]
     editor = vi
+    excludesfile = /Users/tracy/.gitignore
 [color]
     ui = true
 [color "status"]
@@ -65,3 +66,7 @@
 [diff "jupyternotebook"]
     command = git-nbdiffdriver diff
     templatedir = ~/.git_template
+[pull]
+    rebase = false
+[pager]
+    branch = false
