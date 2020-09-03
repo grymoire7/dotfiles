@@ -33,6 +33,7 @@ values."
    '(
      html
      yaml
+     javascript
      python
      (ruby :variables
            ruby-version-manager 'rvm
