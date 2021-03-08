@@ -46,6 +46,7 @@
     poh = push origin HEAD
 
     pushup = "!git push --set-upstream origin $(git symbolic-ref --short HEAD)"
+    hash = "!f() { git log | head -n1 | cut -d' ' -f2 | tee /dev/stderr | tr -d '\n' | pbcopy;}; f"
 
 [push]
     # simple is the default starting with Git 2.0
