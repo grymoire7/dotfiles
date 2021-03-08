@@ -32,7 +32,6 @@ values."
    dotspacemacs-configuration-layers
    '(
      csv
-     javascript
      sql
      html
      yaml
