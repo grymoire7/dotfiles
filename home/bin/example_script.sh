@@ -36,10 +36,10 @@ expr "$*" : ".*--help" > /dev/null && usage
 # On a unix box you might want to write log files to /tmp instead.
 # Add time/date etc. to taste.
 readonly LOG_FILE="./$(basename "$0").log"   # readonly is like const
-info()    { echo "[INFO]    $@" | tee -a "$LOG_FILE" >&2 ; }
-warning() { echo "[WARNING] $@" | tee -a "$LOG_FILE" >&2 ; }
-error()   { echo "[ERROR]   $@" | tee -a "$LOG_FILE" >&2 ; }
-fatal()   { echo "[FATAL]   $@" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
+info()    { echo "[INFO]    " "$@" | tee -a "$LOG_FILE" >&2 ; }
+warning() { echo "[WARNING] " "$@" | tee -a "$LOG_FILE" >&2 ; }
+error()   { echo "[ERROR]   " "$@" | tee -a "$LOG_FILE" >&2 ; }
+fatal()   { echo "[FATAL]   " "$@" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
 
 # globals -- try to keep these to a minimum
 COUNTRY='Canada'                   # set a default country
@@ -107,7 +107,7 @@ cleanup() {
 # not if it's sourced from another script.
 if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
     trap cleanup EXIT     # trap exit and call cleanup()
-    main $*               # do the main thing
+    main "$*"             # do the main thing
 fi
 
 
