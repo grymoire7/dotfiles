@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+set -e
+
+ZROOT=${ZET_ROOT:=~/org/zet}
+
+name="$ZROOT/$(date +"%Y-%m-%d-%H%M")"
+content="*"
+
+for word in $@; do
+  name+="-$word"
+  content+=" ${(C)word}"
+done
+
+if [ ! -e "$name.org" ]; then
+  echo -e "$content\n\n#+FILETAGS:" > $name.org
+fi
+
+emacsclient -n $name.org

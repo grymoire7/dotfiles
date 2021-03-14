@@ -18,8 +18,13 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-# export ZSH="$HOME/.oh-my-zsh"
+if [[ -d "$XDG_CONFIG_HOME/zsh" ]]; then
+  export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+else
+  export ZDOTDIR="$HOME"
+fi
 export ZSH="$ZDOTDIR/.oh-my-zsh"
+export HISTFILE="$ZDOTDIR/.zhistory"  # History filepath
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
