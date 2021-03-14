@@ -6,7 +6,6 @@ alias a=alias
 alias la='ls -A'
 
 alias genv='env | grep'
-alias gh='history | grep'
 alias ghist='history | grep'
 alias t2='tree -L 2'
 alias t3='tree -L 3'
@@ -20,6 +19,7 @@ alias sr='./bin/rspec'
 
 alias gst="git status"
 alias e="emacs -nw"
+alias ec="emacsclient -n"
 
 # alias awe='aws-okta exec optimize/sandbox-dev --'
 alias setclip="xclip -selection c"
