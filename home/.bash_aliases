@@ -14,7 +14,7 @@ alias t4='tree -L 4'
 alias be="bundle exec"
 alias bek="bundle exec rake"
 alias ber='bundle exec rspec'
-alias r=rails
+alias r='bundle exec rails'
 alias sr='./bin/rspec'
 
 alias gst="git status"

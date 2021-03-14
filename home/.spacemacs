@@ -366,6 +366,23 @@ you should place your code here."
   ;;     (powerline-buffer-id)))
   ;; (add-to-list 'auto-mode-alist '("\\.hcl\\(vars\\)?\\'" . terraform-mode))
   (setq org-directory "~/org")
+
+  ;; Keep the indentation well structured by. OMG this is a must have. Makes
+  ;; it feel less like editing a big text file and more like a purpose built
+  ;; editor for org mode that forces the indentation.
+  (setq org-startup-indented t)
+
+  ;; Ctrl+ and Ctrl - for zooming
+  (define-key global-map (kbd "C-+") 'text-scale-increase)
+  (define-key global-map (kbd "C--") 'text-scale-decrease)
+
+  ;; Ruby src block template
+  ;; Simply <rby and press TAB
+  (eval-after-load 'org
+    '(progn
+       (add-to-list 'org-structure-template-alist
+                    '("rby" "#+begin_src ruby\n?\n#+end_src"))
+       ))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
