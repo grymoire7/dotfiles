@@ -28,8 +28,10 @@
     d = diff
     di = diff
     dc = diff --cached
+    dnp = !git --no-pager diff
     co = checkout
     ci = commit
+    cm = commit -m
     st = status
     br = branch
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short

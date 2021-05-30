@@ -1,3 +1,5 @@
+HOME_BASE=$(dirname $(perl -MCwd -e 'print Cwd::abs_path shift' ${(%):-%N}))
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -111,7 +113,7 @@ setopt HIST_REDUCE_BLANKS
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z vi-mode)
+plugins=(z vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -126,6 +128,15 @@ pathmunge () {
             PATH=$1:$PATH
         fi
     fi
+}
+
+compdef g=git
+function g {
+  if [[ $# -gt 0 ]]; then
+    git "$@"
+  else
+    git status --short --branch
+  fi
 }
 
 # export MANPATH="/usr/local/man:$MANPATH"
