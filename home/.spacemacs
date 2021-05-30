@@ -59,7 +59,7 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     ;; spell-checking
+     spell-checking
      ;; syntax-checking
      ;; version-control
      terraform
@@ -366,6 +366,9 @@ you should place your code here."
   ;;     (powerline-buffer-id)))
   ;; (add-to-list 'auto-mode-alist '("\\.hcl\\(vars\\)?\\'" . terraform-mode))
   (setq org-directory "~/org")
+  ;; To add all org files in a repository to the agenda
+  (setq org-agenda-files (directory-files-recursively "~/org/" "\.org$"))
+  ;; (setq org-agenda-files (directory-files-recursively org-directory))
 
   ;; Keep the indentation well structured by. OMG this is a must have. Makes
   ;; it feel less like editing a big text file and more like a purpose built
@@ -416,7 +419,7 @@ This function is called at the very end of Spacemacs initialization."
      ("XXX+" . "#dc752f")
      ("\\?\\?\\?+" . "#dc752f"))))
  '(linum-format " %7i ")
- '(org-agenda-files (list org-directory))
+ ;; '(org-agenda-files (list org-directory))
  '(org-default-notes-file (concat org-directory "/notes.org"))
  '(package-selected-packages
    (quote
