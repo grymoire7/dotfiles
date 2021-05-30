@@ -6,7 +6,7 @@ So if you're me and you already trust this script and know what it does then
 this may be the way to go.
 
 ```bash
-sh -c "$(curl -sSL https://raw.githubusercontent.com/grymoire7/dotfiles/master/home/bin/machine_up)"
+zsh -c "$(curl -sSL https://raw.githubusercontent.com/grymoire7/dotfiles/master/home/bin/machine_up)"
 ```
 
 ## Moving at a more deliberate pace
