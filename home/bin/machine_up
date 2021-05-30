@@ -1,0 +1,53 @@
+#!/usr/bin/env zsh
+
+function vim_install {
+
+  cat <<eos
+What kind of vim setup would you like?
+  0) None (deault)
+  1) SpaceVim with saved config
+  2) saved vimrc w/ vim-plug with plugins
+eos
+
+  echo -n "Choice: "
+  answer=$(read-char.sh); echo ''
+
+  case "${answer}" in
+      1)
+          if [[ -d "~/.SpaceVim.d" ]]; then
+            printf "Installing SpaceVim...\n"
+          else
+            printf "SpaceVim appears to be installed already...\n"
+          fi
+          ;;
+
+      2)
+          if [[ -f "~/.vim/autoload/plug.vim" ]]; then
+            printf "Vim-plug and plugins already installed!\n"
+          else
+            printf "Downloading vim-plug...\n"
+            curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+              https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+            printf "Installing vim-plug for vim...\n"
+            vim +'PlugInstall --sync' +qa
+            if type nvim > /dev/null; then
+              printf "Installing vim-plug for Neovim...\n"
+              nvim --headless +PlugInstall +qall
+            fi
+          fi
+          ;;
+
+      y|Y|$'\n')
+          printf "Yes\n"
+              return 0
+          ;;
+
+      *)  # This is the default
+          printf "No\n"
+              return 1
+
+  esac
+}
+
+vim_install
+
