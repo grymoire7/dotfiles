@@ -32,7 +32,9 @@
     co = checkout
     ci = commit
     cm = commit -m
+    cam = commit -am
     st = status
+    sts = status --short --branch
     br = branch
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
     type = cat-file -t
