@@ -1,8 +1,38 @@
 #!/usr/bin/env zsh
 
+function homeshick_install {
+  if [[ ! -d "$HOME/.homesick/repos/homeshick" ]]; then
+    printf "Installing Homeshick...\n"
+
+    # Grab homeshick
+    git clone git@github.com:andsens/homeshick.git $HOME/.homesick/repos/homeshick
+
+    # Source it into the current shell
+    source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+
+    # grab this repo of dotfiles
+    homeshick clone grymoire7/dotfiles
+
+    # Do initial setup of links
+    homeshick -s link
+
+    cat <<eos
+    Homeshick has been installed, personal dotfiles repos cloned, and linked.
+    If any of the dotfiles already existed, the ones in this repo will not be
+    linked. Now is the time to check that out, remove files as need and run the
+    homeshick -s link command again.
+
+    Finally, clone any local castle (for .bashrc.local, etc.) and link again.
+eos
+  else
+    printf "Homeschick seems to already be installed...skipping.\n"
+  fi
+}
+
 function vim_install {
 
   cat <<eos
+
 What kind of vim setup would you like?
   0) None (deault)
   1) SpaceVim with saved config
@@ -17,13 +47,13 @@ eos
           if [[ -d "~/.SpaceVim.d" ]]; then
             printf "Installing SpaceVim...\n"
           else
-            printf "SpaceVim appears to be installed already...\n"
+            printf "SpaceVim appears to be installed already...skipping.\n"
           fi
           ;;
 
       2)
           if [[ -f "~/.vim/autoload/plug.vim" ]]; then
-            printf "Vim-plug and plugins already installed!\n"
+            printf "Vim-plug and plugins already installed...skipping.\n"
           else
             printf "Downloading vim-plug...\n"
             curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -37,17 +67,17 @@ eos
           fi
           ;;
 
-      y|Y|$'\n')
-          printf "Yes\n"
-              return 0
-          ;;
+      # y|Y|$'\n')
+      #     printf "Yes\n"
+      #     ;;
 
       *)  # This is the default
-          printf "No\n"
-              return 1
+          printf "No VIM configuration will be installed.\n"
+          ;;
 
   esac
 }
 
+homeshick_install
 vim_install
 

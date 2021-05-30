@@ -1,6 +1,15 @@
 grymoire7's dotfiles
 ====================
 
+## Quickstart
+So if you're me and you already trust this script and know what it does then
+this may be the way to go.
+
+```bash
+sh -c "$(curl -sSL https://raw.githubusercontent.com/grymoire7/dotfiles/master/home/bin/machine_up)"
+```
+
+## Moving at a more deliberate pace
 I'm currently using [homeshick](https://github.com/andsens/homeshick) to manage
 my dotfiles and symlinks.  I switched from
 [homesick](https://github.com/technicalpickles/homesick) for fewer
@@ -24,12 +33,12 @@ homeshick -s link
 
 If any of the dotfiles already existed, the ones in this repo will not be
 linked.  Now is the time to check that out, remove files as need and run the
-`homeshick -s link` command agai.
+`homeshick -s link` command again.
 
 Finally, clone any local castle (for .bashrc.local, etc.) and link again.
 
 ## Install software and configure System
-This is interactive script that may ask whether you'd like to install/configure
+This is an interactive script that may ask whether you'd like to install/configure
 various things. It does some things without asking, so you might want to check
 it out before running it for the first time.
 
@@ -45,4 +54,3 @@ machines.  Files that adhere to this philosophy inlude `.bashrc`, `.gitconfig`,
 `.tmux.conf` and `.vimrc`.  For me, these `.local` files are often tracked
 in another repo, for example a corporate repo at work or just a local git repo
 at home.
-
