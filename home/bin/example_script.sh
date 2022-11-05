@@ -107,7 +107,7 @@ cleanup() {
 # not if it's sourced from another script.
 if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
     trap cleanup EXIT     # trap exit and call cleanup()
-    main "$*"             # do the main thing
+    main "$@"             # do the main thing
 fi
 
 

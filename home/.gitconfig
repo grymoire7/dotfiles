@@ -3,7 +3,7 @@
     email = tracy@magicbydesign.com
 [core]
     editor = vi
-    excludesfile = /Users/tracy/.gitignore
+    excludesfile = ~/.gitignore
 [color]
     ui = true
 [color "status"]
@@ -75,3 +75,5 @@
     rebase = false
 [pager]
     branch = false
+[commit]
+	template = ~/.gitmessage
