@@ -68,6 +68,7 @@
     cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
 [init]
+	defaultBranch = main
 [diff "jupyternotebook"]
     command = git-nbdiffdriver diff
     templatedir = ~/.git_template

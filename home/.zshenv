@@ -7,3 +7,4 @@ export NVM_DIR="$XDG_DATA_HOME"/nvm
 
 export _Z_DATA=$XDG_DATA_HOME/.z      # https://github.com/rupa/z/
 # export HISTFILE="$ZDOTDIR/.zhistory"  # History filepath
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
