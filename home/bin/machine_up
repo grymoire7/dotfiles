@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function homeshick_install {
+function homeshick_setup {
   if [[ ! -d "$HOME/.homesick/repos/homeshick" ]]; then
     printf "Installing Homeshick...\n"
 
@@ -78,6 +78,14 @@ eos
   esac
 }
 
-homeshick_install
+function homebrew_setup {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    printf "Installing Homebrew packages...\n"
+    brew update
+  fi
+}
+
+homeshick_setup
 vim_install
+homebrew_setup
 
