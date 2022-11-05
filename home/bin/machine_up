@@ -78,7 +78,7 @@ eos
   esac
 }
 
-function hombrew_setup {
+function homebrew_setup {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     printf "Installing Homebrew packages...\n"
     brew update
