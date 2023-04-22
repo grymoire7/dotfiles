@@ -22,6 +22,8 @@ alias gst="git status"
 alias e="emacs -nw"
 alias ec="emacsclient -n"
 
+alias icat="kitty +kitten icat"
+
 # alias awe='aws-okta exec optimize/sandbox-dev --'
 alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
