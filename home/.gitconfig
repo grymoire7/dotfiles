@@ -25,6 +25,7 @@
     l = !git log --color --oneline | head -10
     a = add
     aa = add --all
+    ap = add -p
     d = diff
     di = diff
     dc = diff --cached
@@ -35,18 +36,21 @@
     cam = commit -am
     st = status
     sts = status --short --branch
+    sw = switch
     br = branch
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
     type = cat-file -t
     dump = cat-file -p
     rb = rebase
+    rt = reset
+    rs = restore
     lo = !crf 'why are you using this feature?'
     ri = "!f() { git rebase -i --autosquash HEAD~$1; }; f"`
     ctags = !.git/hooks/ctags
 
     # From Gary Bernhardt
     pullff = pull --ff-only
-    pom = push origin master
+    pom = push origin main
     poh = push origin HEAD
 
     pushup = "!git push --set-upstream origin $(git symbolic-ref --short HEAD)"
