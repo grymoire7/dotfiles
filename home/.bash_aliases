@@ -4,6 +4,7 @@ alias h=history
 alias a=alias
 
 alias la='ls -A'
+alias gn=garden
 
 alias genv='env | grep'
 alias ghist='history | grep'
