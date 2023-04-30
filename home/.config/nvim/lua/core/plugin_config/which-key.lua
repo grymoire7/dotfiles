@@ -44,6 +44,17 @@ wk.register({
       name = "+toggle",
       n = { "<cmd>set number!<cr>",  "Toggle line numbers" },
     },
+    o = {
+      name = "+copilot",
+      s = { "<cmd>Copilot setup<cr>",     "Copilot setup" },
+      d = { "<cmd>Copilot disable<cr>",   "Disable copilot" },
+      e = { "<cmd>Copilot enable<cr>",    "Enable copilot" },
+      x = { "<cmd>Copilot signout<cr>",   "Signout from copilot" },
+      t = { "<cmd>Copilot status<cr>",    "Copilot status" },
+      p = { "<cmd>Copilot panel<cr>",     "Copilot panel" },
+      v = { "<cmd>Copilot version<cr>",   "Copilot version" },
+      f = { "<cmd>Copilot feedback<cr>",  "Copilot feedback" },
+    },
   },
 })
 

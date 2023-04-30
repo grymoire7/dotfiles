@@ -32,9 +32,31 @@ local plugins = {
 	  tag = '0.1.1',
 	  dependencies = { {'nvim-lua/plenary.nvim'} }
   },
+
+  -- completion
+  "github/copilot.vim",
+
+  --[[
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-nvim-lsp',
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
+  "rafamadriz/friendly-snippets",
+  "github/copilot.vim",
+  "williamboman/mason.nvim",
+  "neovim/nvim-lspconfig",
+  "williamboman/mason-lspconfig.nvim",
+  "glepnir/lspsaga.nvim",
+  {
+	  'nvim-telescope/telescope.nvim',
+	  tag = '0.1.0',
+	  dependencies = { {'nvim-lua/plenary.nvim'} }
+  }
+  --]]
 }
 
 
+--[[
 local _plugins_possibilities = {
   'wbthomason/packer.nvim',
   'ellisonleao/gruvbox.nvim',
@@ -77,6 +99,7 @@ local _plugins_possibilities = {
 	  dependencies = { {'nvim-lua/plenary.nvim'} }
   }
 }
+--]]
 
 local opts = {}
 
