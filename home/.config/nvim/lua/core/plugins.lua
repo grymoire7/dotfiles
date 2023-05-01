@@ -31,23 +31,23 @@ local plugins = {
 
   -- completion
   {
-    'hrsh7th/nvim-cmp',
+    'hrsh7th/nvim-cmp',                -- completion plugin (lua)
     dependencies = {
-      'rafamadriz/friendly-snippets',
-      'L3MON4D3/LuaSnip',
+      'rafamadriz/friendly-snippets',  -- a collection of snippets
+      'L3MON4D3/LuaSnip',              -- snippet manager
     },
   },
-  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-nvim-lsp',              -- nvim-cmp source for built-in lsp client
   -- 'L3MON4D3/LuaSnip',
-  'saadparwaiz1/cmp_luasnip',
+  'saadparwaiz1/cmp_luasnip',          -- nvim-cmp source for luasnip
   -- "rafamadriz/friendly-snippets",
-  "github/copilot.vim",
-  "williamboman/mason.nvim",
-  "neovim/nvim-lspconfig",
-  "williamboman/mason-lspconfig.nvim",
-  "glepnir/lspsaga.nvim",
+  "github/copilot.vim",                -- github ai helper
+  "williamboman/mason.nvim",           -- lsp package manager
+  "neovim/nvim-lspconfig",             -- a collection of lsp configs
+  "williamboman/mason-lspconfig.nvim", -- lsp config data for mason
+  "glepnir/lspsaga.nvim",              -- popup look and feel niceties
   {
-	  'nvim-telescope/telescope.nvim',
+	  'nvim-telescope/telescope.nvim',   -- fuzzy finder
 	  tag = '0.1.1',
 	  dependencies = { {'nvim-lua/plenary.nvim'} }
   },
