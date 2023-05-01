@@ -16,6 +16,7 @@ local plugins = {
   'nvim-lualine/lualine.nvim',
   'nvim-tree/nvim-tree.lua',
   'nvim-tree/nvim-web-devicons',
+  'nvim-treesitter/nvim-treesitter',
   {
     "folke/which-key.nvim",
     config = function()
@@ -27,79 +28,30 @@ local plugins = {
       })
     end,
   },
+
+  -- completion
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+      'L3MON4D3/LuaSnip',
+    },
+  },
+  'hrsh7th/cmp-nvim-lsp',
+  -- 'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
+  -- "rafamadriz/friendly-snippets",
+  "github/copilot.vim",
+  "williamboman/mason.nvim",
+  "neovim/nvim-lspconfig",
+  "williamboman/mason-lspconfig.nvim",
+  "glepnir/lspsaga.nvim",
   {
 	  'nvim-telescope/telescope.nvim',
 	  tag = '0.1.1',
 	  dependencies = { {'nvim-lua/plenary.nvim'} }
   },
-
-  -- completion
-  "github/copilot.vim",
-
-  --[[
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-nvim-lsp',
-  'L3MON4D3/LuaSnip',
-  'saadparwaiz1/cmp_luasnip',
-  "rafamadriz/friendly-snippets",
-  "github/copilot.vim",
-  "williamboman/mason.nvim",
-  "neovim/nvim-lspconfig",
-  "williamboman/mason-lspconfig.nvim",
-  "glepnir/lspsaga.nvim",
-  {
-	  'nvim-telescope/telescope.nvim',
-	  tag = '0.1.0',
-	  dependencies = { {'nvim-lua/plenary.nvim'} }
-  }
-  --]]
 }
-
-
---[[
-local _plugins_possibilities = {
-  'wbthomason/packer.nvim',
-  'ellisonleao/gruvbox.nvim',
-  'rebelot/kanagawa.nvim',
-  {
-    'dracula/vim',
-    lazy = false,
-  },
-  'nvim-tree/nvim-tree.lua',
-  'nvim-tree/nvim-web-devicons',
-  'nvim-lualine/lualine.nvim',
-  'nvim-treesitter/nvim-treesitter',
-  'bluz71/vim-nightfly-colors',
-  'vim-test/vim-test',
-  'lewis6991/gitsigns.nvim',
-  'preservim/vimux',
-  'christoomey/vim-tmux-navigator',
-  'tpope/vim-fugitive',
-  'tpope/vim-commentary',
-
-  -- debugging
-  'mfussenegger/nvim-dap',
-  'rcarriga/nvim-dap-ui',
-  'simrat39/rust-tools.nvim',
-
-  -- completion
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-nvim-lsp',
-  'L3MON4D3/LuaSnip',
-  'saadparwaiz1/cmp_luasnip',
-  "rafamadriz/friendly-snippets",
-  "github/copilot.vim",
-  "williamboman/mason.nvim",
-  "neovim/nvim-lspconfig",
-  "williamboman/mason-lspconfig.nvim",
-  "glepnir/lspsaga.nvim",
-  {
-	  'nvim-telescope/telescope.nvim',
-	  tag = '0.1.0',
-	  dependencies = { {'nvim-lua/plenary.nvim'} }
-  }
-}
---]]
 
 local opts = {}
 
