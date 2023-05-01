@@ -23,6 +23,7 @@ require("nvim-tree").setup({
 })
 
 vim.keymap.set('n', '<c-n>', ':NvimTreeFindFileToggle<CR>')
-vim.keymap.set('n', '<leader>f/', ':NvimTreeFindFileToggle<CR>')
-vim.keymap.set('n', '<leader>ft', ':NvimTreeFindFileToggle<CR>')
-vim.keymap.set('n', '<leader>pt', ':NvimTreeFindFileToggle<CR>')
+-- moved to which-key.lua
+-- vim.keymap.set('n', '<leader>f/', ':NvimTreeFindFileToggle<CR>')
+-- vim.keymap.set('n', '<leader>ft', ':NvimTreeFindFileToggle<CR>')
+-- vim.keymap.set('n', '<leader>pt', ':NvimTreeFindFileToggle<CR>')

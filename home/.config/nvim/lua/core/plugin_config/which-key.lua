@@ -5,6 +5,10 @@ local wk = require("which-key")
 wk.register({
   ["<leader><tab>"] = { "<C-^>", "Alternate file" },
   ["<leader>"] = {
+    p = {
+      name = "+project",
+      t = { ":NvimTreeFindFileToggle<cr>",  "Toggle file tree" },
+    },
     f = {
       name = "+file",
       f = { "<cmd>Telescope find_files<cr>", "Find File" },
@@ -13,6 +17,8 @@ wk.register({
       s = { "<cmd>w<cr>",                    "Save File" },
       S = { "<cmd>wa<cr>",                   "Save all Files" },
     },
+    ["f/"] = { ":NvimTreeFindFileToggle<cr>",  "Toggle file tree" },
+    ["ft"] = { ":NvimTreeFindFileToggle<cr>",  "Toggle file tree" },
     b = {
       name = "+buffer",
       -- b = { "<cmd>buffers<cr><cmd>buffer<space><cr>", "Select buffer" }, -- in keymaps.lua
