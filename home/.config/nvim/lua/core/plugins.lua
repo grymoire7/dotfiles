@@ -28,6 +28,7 @@ local plugins = {
       })
     end,
   },
+  'lewis6991/gitsigns.nvim',
 
   -- completion
   {

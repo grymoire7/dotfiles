@@ -9,7 +9,7 @@ require("core.plugin_config.gruvbox")
 require("core.plugin_config.which-key")
 require("core.plugin_config.completions")
 require("core.plugin_config.lspconfig")
--- require("core.plugin_config.gitsigns")
+require("core.plugin_config.gitsigns")
 -- require("core.plugin_config.copilot")
 
 -- Set theme (move to colorscheme.lua)
