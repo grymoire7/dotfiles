@@ -32,9 +32,17 @@ wk.register({
     c = {
       name = "+code",
       b = { "<cmd>Git blame<cr>",              "Git blame window" },
-      f = { "<cmd>Telescope git_status<cr>",   "Find git status" },
       l = { "<cmd>Git log<cr>",                "Git log" },
       s = { "<cmd>Git<cr>",                    "Git status" },
+      t = {
+        name = "+telescope",
+        b = { "<cmd>Telescope git_branches<cr>",       "Find branch" },
+        c = { "<cmd>Telescope git_commits<cr>",        "Find commit" },
+        s = { "<cmd>Telescope git_status<cr>",         "Find status" },
+        t = { "<cmd>Telescope git_stash<cr>",          "Find stash" },
+        f = { "<cmd>Telescope git_bcommits<cr>",       "Find buffer commit" },
+        r = { "<cmd>Telescope git_bcommits_range<cr>", "Find buffer commit range" },
+      },
       w = {
         name = "+workspace",
         o = { "<cmd>tabnew<cr>",               "Open new tab" },
