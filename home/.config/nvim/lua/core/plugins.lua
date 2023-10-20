@@ -30,6 +30,8 @@ local plugins = {
   },
   'lewis6991/gitsigns.nvim',
 
+  'tpope/vim-fugitive',                -- git wrapper
+
   -- completion
   {
     'hrsh7th/nvim-cmp',                -- completion plugin (lua)

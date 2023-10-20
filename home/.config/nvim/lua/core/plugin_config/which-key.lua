@@ -29,6 +29,20 @@ wk.register({
       n = { "<cmd>bn<cr>",      "Next buffer" },
       p = { "<cmd>bp<cr>",      "Prev buffer" },
     },
+    c = {
+      name = "+code",
+      b = { "<cmd>Git blame<cr>",              "Git blame window" },
+      f = { "<cmd>Telescope git_status<cr>",   "Find git status" },
+      l = { "<cmd>Git log<cr>",                "Git log" },
+      s = { "<cmd>Git<cr>",                    "Git status" },
+      w = {
+        name = "+workspace",
+        o = { "<cmd>tabnew<cr>",               "Open new tab" },
+        c = { "<cmd>tabclose<cr>",             "Close tab" },
+        n = { "<cmd>tabnext<cr>",              "Next tab" },
+        p = { "<cmd>tabprev<cr>",              "Previous tab" },
+      },
+    },
     q = {
       name = "+quit",
       q = { "<cmd>qa<cr>",   "Quit all" },
@@ -52,6 +66,7 @@ wk.register({
     t = {
       name = "+toggle",
       n = { "<cmd>set number!<cr>",  "Toggle line numbers" },
+      b = { "<cmd>Gitsigns toggle_current_line_blame<cr>",  "Toggle current line blame" },
     },
     o = {
       name = "+copilot",
