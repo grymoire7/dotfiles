@@ -81,4 +81,4 @@
 [pager]
     branch = false
 [commit]
-	template = ~/.gitmessage
+    template = ~/.gitmessage
