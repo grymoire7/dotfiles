@@ -4,6 +4,7 @@ alias h=history
 alias a=alias
 
 alias la='ls -A'
+alias lg='lazygit'
 alias gn=garden
 
 alias genv='env | grep'
