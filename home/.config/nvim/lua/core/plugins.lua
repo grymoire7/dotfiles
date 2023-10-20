@@ -30,6 +30,7 @@ local plugins = {
   },
   'lewis6991/gitsigns.nvim',
 
+  'kdheepak/lazygit.nvim',             -- git wrapper
   'tpope/vim-fugitive',                -- git wrapper
 
   -- completion

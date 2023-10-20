@@ -50,6 +50,7 @@ wk.register({
         n = { "<cmd>tabnext<cr>",              "Next tab" },
         p = { "<cmd>tabprev<cr>",              "Previous tab" },
       },
+      z = { "<cmd>LazyGit<cr>",                "Launch LazyGit" },
     },
     q = {
       name = "+quit",
