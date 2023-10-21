@@ -29,6 +29,29 @@ wk.register({
       n = { "<cmd>bn<cr>",      "Next buffer" },
       p = { "<cmd>bp<cr>",      "Prev buffer" },
     },
+    c = {
+      name = "+code",
+      b = { "<cmd>Git blame<cr>",              "Git blame window" },
+      l = { "<cmd>Git log<cr>",                "Git log" },
+      s = { "<cmd>Git<cr>",                    "Git status" },
+      t = {
+        name = "+telescope",
+        b = { "<cmd>Telescope git_branches<cr>",       "Find branch" },
+        c = { "<cmd>Telescope git_commits<cr>",        "Find commit" },
+        s = { "<cmd>Telescope git_status<cr>",         "Find status" },
+        t = { "<cmd>Telescope git_stash<cr>",          "Find stash" },
+        f = { "<cmd>Telescope git_bcommits<cr>",       "Find buffer commit" },
+        r = { "<cmd>Telescope git_bcommits_range<cr>", "Find buffer commit range" },
+      },
+      w = {
+        name = "+workspace",
+        o = { "<cmd>tabnew<cr>",               "Open new tab" },
+        c = { "<cmd>tabclose<cr>",             "Close tab" },
+        n = { "<cmd>tabnext<cr>",              "Next tab" },
+        p = { "<cmd>tabprev<cr>",              "Previous tab" },
+      },
+      z = { "<cmd>LazyGit<cr>",                "Launch LazyGit" },
+    },
     q = {
       name = "+quit",
       q = { "<cmd>qa<cr>",   "Quit all" },
@@ -52,6 +75,7 @@ wk.register({
     t = {
       name = "+toggle",
       n = { "<cmd>set number!<cr>",  "Toggle line numbers" },
+      b = { "<cmd>Gitsigns toggle_current_line_blame<cr>",  "Toggle current line blame" },
     },
     o = {
       name = "+copilot",

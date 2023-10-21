@@ -7,6 +7,15 @@ vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
 vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
+-- clipboard bindings
+if vim.g.neovide then
+  vim.keymap.set('v', '<D-c>', '"+y')
+  vim.keymap.set('n', '<D-v>', '"+P')
+  vim.keymap.set('v', '<D-v>', '"+P')
+  vim.keymap.set('c', '<D-v>', '<C-R>+')
+  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli')
+end
+
 -- vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>') -- use <leader>sc instead
 
 -- Spacemacs-like mappings, most moved to plugin_config/which-key.lua

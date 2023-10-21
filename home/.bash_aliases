@@ -6,6 +6,7 @@ alias a=alias
 alias ll='ls -lF'
 alias l='ls -lAF'
 alias la='ls -ACF'
+alias lg='lazygit'
 
 alias gn=garden
 
