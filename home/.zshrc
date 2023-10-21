@@ -1,5 +1,14 @@
 HOME_BASE=$(dirname $(perl -MCwd -e 'print Cwd::abs_path shift' ${(%):-%N}))
 
+# Aliases involving color support and filesystem listings are included here.
+# All other aliases should be in ~/.bash_aliases
+#
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -115,20 +124,25 @@ setopt HIST_REDUCE_BLANKS
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(z vi-mode)
 
-source $ZSH/oh-my-zsh.sh
+if [ -f $ZSH/oh-my-zsh.sh ]; then
+  source $ZSH/oh-my-zsh.sh
+fi
 
 # User configuration
 
 # PATH munging -- very handy for what follows
 pathmunge () {
-    if ! echo $PATH | egrep -q "(^|:)$1($|:)" ; then
-        if [ "$2" = "after" ] ; then
-            PATH=$PATH:$1
-        else
-            PATH=$1:$PATH
-        fi
+  if ! echo $PATH | egrep -q "(^|:)$1($|:)" ; then
+    if [ "$2" = "after" ] ; then
+      PATH=$PATH:$1
+    else
+      PATH=$1:$PATH
     fi
+  fi
 }
+
+autoload -Uz compinit
+compinit
 
 compdef g=git
 function g {
@@ -151,7 +165,9 @@ function g {
 #   export EDITOR='mvim'
 # fi
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+if type "brew" > /dev/null; then
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -225,3 +241,4 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+
