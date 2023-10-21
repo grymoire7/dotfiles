@@ -3,7 +3,10 @@
 alias h=history
 alias a=alias
 
-alias la='ls -A'
+alias ll='ls -lF'
+alias l='ls -lAF'
+alias la='ls -ACF'
+
 alias gn=garden
 
 alias genv='env | grep'
