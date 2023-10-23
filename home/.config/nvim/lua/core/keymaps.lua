@@ -8,6 +8,8 @@ vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
 -- clipboard bindings
+vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
+
 if vim.g.neovide then
   vim.keymap.set('v', '<D-c>', '"+y')
   vim.keymap.set('n', '<D-v>', '"+P')
