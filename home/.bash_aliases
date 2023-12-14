@@ -16,11 +16,13 @@ alias t2='tree -L 2'
 alias t3='tree -L 3'
 alias t4='tree -L 4'
 
+alias pf="fzf --preview='bat --color=always {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+
 alias be="bundle exec"
 alias bek="bundle exec rake"
 alias ber='bundle exec rspec'
-alias r='bundle exec rails'
-alias sr='./bin/rspec'
+# alias r='bundle exec rails'
+# alias sr='./bin/rspec'
 
 alias gst="git status"
 alias e="emacs -nw"

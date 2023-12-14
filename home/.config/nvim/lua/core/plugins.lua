@@ -33,6 +33,8 @@ local plugins = {
   'kdheepak/lazygit.nvim',             -- git wrapper
   'tpope/vim-fugitive',                -- git wrapper
 
+  'kchmck/vim-coffee-script',          -- coffee syntax highlighting
+
   -- completion
   {
     'hrsh7th/nvim-cmp',                -- completion plugin (lua)
