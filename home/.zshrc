@@ -122,9 +122,10 @@ setopt HIST_REDUCE_BLANKS
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(z vi-mode)
+plugins=(vi-mode zsh-autosuggestions)
 
 if [ -f $ZSH/oh-my-zsh.sh ]; then
+  fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
   source $ZSH/oh-my-zsh.sh
 fi
 
@@ -223,6 +224,15 @@ if [ -d "/usr/local/heroku" ]; then
     pathmunge /usr/local/heroku/bin before
 fi
 
+if type "zoxide" > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+if type "fzf" > /dev/null; then
+  [ -f ~/.fzf.completion.zsh ] && source ~/.fzf.completion.zsh
+  [ -f ~/.fzf.key-bindings.zsh ] && source ~/.fzf.key-bindings.zsh
+fi
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"
 # if we have rvm then enable it
@@ -241,4 +251,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+
+[[ ! -f $HOME/.docker/init-zsh.sh ]] || source $HOME/.docker/init-zsh.sh
 

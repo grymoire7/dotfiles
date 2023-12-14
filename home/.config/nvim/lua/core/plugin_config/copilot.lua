@@ -1,0 +1,1 @@
+../../../../../.homesick/repos/dotfiles/home/.config/nvim/lua/core/plugin_config/copilot.lua
