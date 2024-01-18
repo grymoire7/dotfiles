@@ -1,22 +1,21 @@
-HOME_BASE=$(dirname $(perl -MCwd -e 'print Cwd::abs_path shift' ${(%):-%N}))
+# HOME_BASE=$(dirname $(perl -MCwd -e 'print Cwd::abs_path shift' ${(%):-%N}))
+HOME_BASE=$(dirname $(realpath "${(%):-%N}"))
 
 # Aliases involving color support and filesystem listings are included here.
 # All other aliases should be in ~/.bash_aliases
 #
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
 fi
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
 fi
-
-export EDITOR=vim
 
 if [[ -r "$XDG_CONFIG_HOME/ripgrep/rg.conf" ]]; then
   export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rg.conf"
@@ -25,80 +24,25 @@ if [[ -d "$HOME/projects" ]]; then
   export PROJECT_DIR="$HOME/projects"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
+# Path to your zsh config files.
 if [[ -d "$XDG_CONFIG_HOME/zsh" ]]; then
   export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 else
   export ZDOTDIR="$HOME"
 fi
-export ZSH="$ZDOTDIR/.oh-my-zsh"
-export HISTFILE="$ZDOTDIR/.zhistory"  # History filepath
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# Fix up history settings.
+export HISTFILE="$ZDOTDIR/.zhistory"
+HISTSIZE=5000
+SAVEHIST=2000
+HISTDUP=erase
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-HIST_STAMPS="mm/dd/yyyy"
-
-SAVEHIST=5000
-HISTSIZE=2000
+# When writing out the history file, older commands that duplicate newer ones are omitted. 
+setopt hist_save_no_dups
 
 # share history across multiple zsh sessions
 # setopt SHARE_HISTORY
+
 # append to history
 setopt APPEND_HISTORY
 
@@ -107,27 +51,18 @@ setopt INC_APPEND_HISTORY
 
 # expire duplicates first
 setopt HIST_EXPIRE_DUPS_FIRST
+
 # do not store duplications
 setopt HIST_IGNORE_DUPS
+
 #ignore duplicates when searching
 setopt HIST_FIND_NO_DUPS
+
 # removes blank lines from history
 setopt HIST_REDUCE_BLANKS
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode zsh-autosuggestions)
-
-if [ -f $ZSH/oh-my-zsh.sh ]; then
-  fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-  source $ZSH/oh-my-zsh.sh
-fi
+# Vim keybindings for command line
+bindkey -v
 
 # User configuration
 
@@ -154,35 +89,17 @@ function g {
   fi
 }
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Case insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 if type "brew" > /dev/null; then
   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Alias definitions.
+# Alias definitions
 [[ ! -f ~/.bash_aliases ]] || source ~/.bash_aliases
 
 # Local, site specific environment modifications
@@ -190,29 +107,28 @@ fi
 # as it's contents will vary depending on the local context.
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
 
-
 if [ -f ~/.homesick/repos/homeshick/homeshick.sh ]; then
-    source $HOME/.homesick/repos/homeshick/homeshick.sh
+  source $HOME/.homesick/repos/homeshick/homeshick.sh
 fi
 
 # put personal bin directory at end of path
 if [ -d "$HOME/bin" ]; then
-    pathmunge ~/bin after
+  pathmunge ~/bin after
 fi
 
 # put anaconda bin directory at end of path
 if [ -d "/anaconda3/bin" ]; then
-    pathmunge /anaconda3/bin before
+  pathmunge /anaconda3/bin before
 fi
 
 # if we have rbenv then enable it
 if [ -d "$HOME/.rbenv" ]; then
-    pathmunge $HOME/.rbenv/bin before
-    eval "$(rbenv init -)"
+  pathmunge $HOME/.rbenv/bin before
+  eval "$(rbenv init -)"
 fi
 
 if [ -d "/usr/local/opt/libpq/bin" ]; then
-    pathmunge /usr/local/opt/libpq/bin before
+  pathmunge /usr/local/opt/libpq/bin before
 fi
 
 if [ -d "/usr/local/sbin" ]; then
@@ -221,7 +137,7 @@ fi
 
 # if we have heroku then enable it
 if [ -d "/usr/local/heroku" ]; then
-    pathmunge /usr/local/heroku/bin before
+  pathmunge /usr/local/heroku/bin before
 fi
 
 if type "zoxide" > /dev/null; then
@@ -229,8 +145,8 @@ if type "zoxide" > /dev/null; then
 fi
 
 if type "fzf" > /dev/null; then
-  [ -f ~/.fzf.completion.zsh ] && source ~/.fzf.completion.zsh
-  [ -f ~/.fzf.key-bindings.zsh ] && source ~/.fzf.key-bindings.zsh
+  [ -f ${XDG_CONFIG_HOME}/.fzf.completion.zsh ] && source ${XDG_CONFIG_HOME}/fzf.completion.zsh
+  [ -f ${XDG_CONFIG_HOME}/.fzf.key-bindings.zsh ] && source ${XDG_CONFIG_HOME}/fzf.key-bindings.zsh
 fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -245,12 +161,10 @@ fi
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+# Set prompt using starship if present.
+if type "starship" > /dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 [[ ! -f $HOME/.docker/init-zsh.sh ]] || source $HOME/.docker/init-zsh.sh
 

@@ -1,5 +1,10 @@
 # ~/.bash_aliases: executed by .bashrc/.zshrc for non-login shells.
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
 alias h=history
 alias a=alias
 
