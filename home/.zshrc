@@ -96,7 +96,16 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # export LANG=en_US.UTF-8
 
 if type "brew" > /dev/null; then
+  BREW_PREFIX=$(brew --prefix)
   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+fi
+
+# zsh-autosuggstions: https://github.com/zsh-users/zsh-autosuggestions
+# Check both brew and manual install locations
+if [ -f "${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source "${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+elif [ -f "${ZDOTDIR}/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source "${ZDOTDIR}/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 # Alias definitions
@@ -145,8 +154,8 @@ if type "zoxide" > /dev/null; then
 fi
 
 if type "fzf" > /dev/null; then
-  [ -f ${XDG_CONFIG_HOME}/.fzf.completion.zsh ] && source ${XDG_CONFIG_HOME}/fzf.completion.zsh
-  [ -f ${XDG_CONFIG_HOME}/.fzf.key-bindings.zsh ] && source ${XDG_CONFIG_HOME}/fzf.key-bindings.zsh
+  [ -f ${XDG_CONFIG_HOME}/.fzf.completion.zsh ] && source ${XDG_CONFIG_HOME}/.fzf.completion.zsh
+  [ -f ${XDG_CONFIG_HOME}/.fzf.key-bindings.zsh ] && source ${XDG_CONFIG_HOME}/.fzf.key-bindings.zsh
 fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.

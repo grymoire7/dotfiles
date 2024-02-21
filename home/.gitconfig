@@ -21,6 +21,7 @@
     lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
 
     dog = log --all --decorate --oneline --graph
+    dlog = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
     lg4 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
     l = !git log --color --oneline | head -10
     a = add
@@ -29,6 +30,8 @@
     d = diff
     di = diff
     dc = diff --cached
+    dft = difftool
+    din = "!f() { GIT_EXTERNAL_DIFF='difft --display inline' git diff $@; }; f"
     dnp = !git --no-pager diff
     co = checkout
     ci = commit
@@ -65,20 +68,29 @@
 [include]
     path = .gitconfig.local
 
-[difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path = 
+[diff]
+    tool = difftastic
+    external = difft
+[difftool]
+    prompt = false
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
 [mergetool "sourcetree"]
     cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [diff "jupyternotebook"]
     command = git-nbdiffdriver diff
     templatedir = ~/.git_template
 [pull]
     rebase = false
 [pager]
+    difftool = true
     branch = false
 [commit]
     template = ~/.gitmessage
+[branch]
+	sort = -committerdate
+[column]
+	ui = auto

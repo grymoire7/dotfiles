@@ -8,9 +8,18 @@ alias .....='cd ../../../..'
 alias h=history
 alias a=alias
 
-alias ll='ls -lF'
-alias l='ls -lAF'
-alias la='ls -ACF'
+if type "eza" > /dev/null; then
+  alias ls='eza -F'
+  alias ll='eza -lF'
+  alias l='eza -lAF'
+  alias la='eza -AGF'
+else
+  alias ls='ls -F'
+  alias ll='ls -lF'
+  alias l='ls -lAF'
+  alias la='ls -ACF'
+fi
+
 alias lg='lazygit'
 
 alias gn=garden
