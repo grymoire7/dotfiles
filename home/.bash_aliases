@@ -14,7 +14,7 @@ if type "eza" > /dev/null; then
   alias l='eza -lAF'
   alias la='eza -AGF'
 else
-  alias ls='ls -F'
+  alias ls='ls -F --color=auto'
   alias ll='ls -lF'
   alias l='ls -lAF'
   alias la='ls -ACF'
