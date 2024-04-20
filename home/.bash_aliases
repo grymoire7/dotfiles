@@ -9,10 +9,10 @@ alias h=history
 alias a=alias
 
 if type "eza" > /dev/null; then
-  alias ls='eza -F'
-  alias ll='eza -lF'
-  alias l='eza -lAF'
-  alias la='eza -AGF'
+  alias ls='eza -F auto'
+  alias ll='eza -l -F auto'
+  alias l='eza -lA -F auto'
+  alias la='eza -AG -F auto'
 else
   alias ls='ls -F'
   alias ll='ls -lF'
@@ -26,9 +26,12 @@ alias gn=garden
 
 alias genv='env | grep'
 alias ghist='history | grep'
-alias t2='tree -L 2'
-alias t3='tree -L 3'
-alias t4='tree -L 4'
+alias t2='tree -C -L 2'
+alias t3='tree -C -L 3'
+alias t4='tree -C -L 4'
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
 
 alias pf="fzf --preview='bat --color=always {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
