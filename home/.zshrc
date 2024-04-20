@@ -80,7 +80,7 @@ pathmunge () {
 autoload -Uz compinit
 compinit
 
-compdef g=git
+# compdef g=git
 function g {
   if [[ $# -gt 0 ]]; then
     git "$@"
@@ -115,6 +115,8 @@ fi
 # This file will not be under source control (as this one is)
 # as it's contents will vary depending on the local context.
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
+
+compdef g=git
 
 if [ -f ~/.homesick/repos/homeshick/homeshick.sh ]; then
   source $HOME/.homesick/repos/homeshick/homeshick.sh
