@@ -50,23 +50,13 @@ alias ec="emacsclient -n"
 alias icat="kitty +kitten icat"
 alias hg="kitty +kitten hyperlinked_grep"
 
-# alias awe='aws-okta exec optimize/sandbox-dev --'
 alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
 
-# FYI, cdpath in bash might be a better choice for cd aliases
 # alias gprom="git pull --rebase origin master"
 # alias gcan="git commit --amend --no-edit"
 # alias grc="git rebase --continue"
 # alias grqa="git fetch && git reset --hard origin/qa"
-# alias wow='git status'
-# alias gmacs="open -a Emacs"
-# alias '+1'="echo 'Aw yeah!!!'"
-# alias dc='docker-compose -f docker-compose.development.yml'
-# alias dm='docker-machine'
 # alias npmclean='rm -rf ./node_modules && npm install'
 
 # alias 'fails'='kill -9 `ps aux | grep rails | tail -n 1 | awk "{print $2}"`'
-# alias 'dgtunnel'='ssh b.snc1 -fNL 13342:dealguide-algorithm-dev.snc1:8080'
-
-
