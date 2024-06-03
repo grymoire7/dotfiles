@@ -1,0 +1,44 @@
+# What protocol to use when performing git operations. Supported values: ssh, https
+git_protocol: https
+# What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.
+editor:
+# When to interactively prompt. This is a global config that cannot be overridden by hostname. Supported values: enabled, disabled
+prompt: enabled
+# A pager program to send command output to, e.g. "less". Set the value to "cat" to disable the pager.
+pager: !!null less -FX
+# Aliases allow you to create nicknames for gh commands
+aliases:
+    co: pr checkout
+    prme: pr list -S 'org:watermelonexpress is:pr is:open involves:@me'
+    ateam: pr list -S 'org:watermelonexpress is:pr is:open label:A-Team'
+    me: pr list -S 'org:watermelonexpress is:pr is:open involves:@me'
+    cpr: '!git push -u origin HEAD && gh pr create $*'
+    prco: |-
+      !gh pr list --limit 100 --json number,title,updatedAt,author --template \
+      '{{range .}}{{tablerow .number .title .author.name (timeago .updatedAt)}}{{end}}' | \
+      fzf --height 25% --reverse | cut -f1 -d ' ' | xargs gh pr checkout
+    pr-files-changed: |-
+      !gh api --paginate graphql -F owner=':owner' -F name=':repo' -F "pr=$1" -f query='
+            query($per_page: Int = 100, $endCursor: String, $pr: Int!, $owner: String!, $name: String!) {
+              repository(owner: $owner, name: $name) {
+                pullRequest(number: $pr) {
+                  files(first: $per_page, after: $endCursor) {
+                    edges {
+                      node {
+                        path
+                      }
+                    }
+                    pageInfo {
+                      endCursor
+                      hasNextPage
+                    }
+                  }
+                }
+              }
+            }
+          ' | jq -r ".data.repository.pullRequest.files.edges[] | [.node.path] | @tsv"
+# The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
+http_unix_socket:
+# What web browser gh should use when opening URLs. If blank, will refer to environment.
+browser:
+version: "1"
