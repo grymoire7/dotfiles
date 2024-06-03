@@ -33,7 +33,8 @@ alias t4='tree -C -L 4'
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
-alias pf="fzf --preview='bat --color=always {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+# fzf with preview via bat
+alias pfzf="fzf --preview='bat --color=always {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
 alias be="bundle exec"
 alias bek="bundle exec rake"
