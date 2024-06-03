@@ -27,6 +27,7 @@
     a = add
     aa = add --all
     ap = add -p
+    bs="!git branch --sort=-committerdate | fzf | xargs -I{} git checkout {}"
     d = diff
     di = diff
     dc = diff --cached
