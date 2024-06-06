@@ -20,3 +20,4 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+source /Users/tracy/.docker/init-bash.sh || true # Added by Docker Desktop

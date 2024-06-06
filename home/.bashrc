@@ -200,3 +200,4 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+source /Users/tracy/.docker/init-bash.sh || true # Added by Docker Desktop

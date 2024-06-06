@@ -1,3 +1,5 @@
+command_timeout = 2000
+
 [aws]
 disabled = true
 
@@ -127,6 +129,8 @@ symbol = " "
 symbol = "󰟔 "
 
 [ruby]
+style = "bold red"
+format = "via [$symbol]($style)"
 symbol = " "
 
 [rust]
