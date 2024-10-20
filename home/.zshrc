@@ -97,7 +97,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 if type "brew" > /dev/null; then
   BREW_PREFIX=$(brew --prefix)
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+  # TODO: make this dynamic according to installed version
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
 fi
 
 # zsh-autosuggstions: https://github.com/zsh-users/zsh-autosuggestions
@@ -179,3 +180,4 @@ fi
 
 [[ ! -f $HOME/.docker/init-zsh.sh ]] || source $HOME/.docker/init-zsh.sh
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

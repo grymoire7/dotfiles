@@ -54,7 +54,7 @@ local plugins = {
   "glepnir/lspsaga.nvim",              -- popup look and feel niceties
   {
 	  'nvim-telescope/telescope.nvim',   -- fuzzy finder
-	  tag = '0.1.1',
+	  tag = '0.1.8',
 	  dependencies = { {'nvim-lua/plenary.nvim'} }
   },
   {
