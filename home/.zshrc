@@ -133,6 +133,10 @@ if [ -d "/anaconda3/bin" ]; then
   pathmunge /anaconda3/bin before
 fi
 
+if [ -d "$HOME/.local/bin" ]; then
+  pathmunge $HOME/.local/bin after
+fi
+
 # if we have rbenv then enable it
 if [ -d "$HOME/.rbenv" ]; then
   pathmunge $HOME/.rbenv/bin before
